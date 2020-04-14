@@ -9,7 +9,12 @@ from math import ceil
 from datetime import datetime,timedelta
 import time
 import pandas as pd
-
+from sqlalchemy import create_engine
+import os
+#this_path = os.path.realpath(__file__)
+#engine = create_engine('mysql://root:1982@localhost/bi', echo=True)
+#import pymysql
+#pymysql.install_as_MySQLdb()
 
 dia_semana_completo = ('segunda-feira','terca-feira','quarta-feira',
                  'quinta-feira','sexta-feira','sabado','domingo')
@@ -91,6 +96,7 @@ def generate_csv_with_dates(dt_ini, dt_fim):
     df.to_csv('datas.csv',index=False,sep=';',encoding='ISO-8859-1')
     df.to_json('datas.json',orient = "records")
     df.to_excel('datas.xlsx',index=False)
+    #df.to_sql('datas', con=engine)
 #data_ini.isocalendar()[1]      
 if __name__ == '__main__':
     i = input('Informe a data inicio ex: yyyy-mm-dd _ ')
