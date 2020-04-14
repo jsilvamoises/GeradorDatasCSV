@@ -16,10 +16,10 @@ dia_semana_completo = ('segunda-feira','terca-feira','quarta-feira',
 
 dia_semana_abrev = ('seg','ter','qua','qui','sex','sab','dom')
 
-meses_completo=('janeiro','fevereiro','mar','abril','maio','junho',
+meses_completo=('janeiro','fevereiro','março','abril','maio','junho',
            'julho','agosto','setembro','outubro','novembro','dezembro')
 
-meses_abrev=('jan','fev','mar','abrl','mai','jun','jul','ago','set','out','nov','dez')
+meses_abrev=('jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez')
 
 
 def week_of_month(dt):
@@ -79,7 +79,8 @@ def generate_csv_with_dates(dt_ini, dt_fim):
             'dia_semana_abrev':dia_semana_abrev[data_ini.weekday()],
             'mes_completo':meses_completo[data_ini.month-1],
             'mes_abrev':meses_abrev[data_ini.month-1],
-            'mes_numero':data_ini.month
+            'mes_numero':data_ini.month,
+            'feriado':0
             
             }
         items.append(item)        
@@ -88,7 +89,8 @@ def generate_csv_with_dates(dt_ini, dt_fim):
     df = pd.DataFrame(items)
     df.reset_index()
     df.to_csv('datas.csv',index=False,sep=';',encoding='ISO-8859-1')
-    df.to_json('data.json',orient = "records")
+    df.to_json('datas.json',orient = "records")
+    df.to_excel('datas.xlsx',index=False)
 #data_ini.isocalendar()[1]      
 if __name__ == '__main__':
     i = input('Informe a data inicio ex: yyyy-mm-dd _ ')
