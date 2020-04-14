@@ -87,7 +87,8 @@ def generate_csv_with_dates(dt_ini, dt_fim):
         
     df = pd.DataFrame(items)
     df.reset_index()
-    df.to_excel('datas.xls',index=False)
+    df.to_csv('datas.csv',index=False,sep=';',encoding='ISO-8859-1')
+    df.to_json('data.json',orient = "records")
 #data_ini.isocalendar()[1]      
 if __name__ == '__main__':
     i = input('Informe a data inicio ex: yyyy-mm-dd _ ')
